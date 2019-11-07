@@ -1,0 +1,36 @@
+#include <stdio.h> // einbinden der Bibiliothek
+
+int og,i,x,z,imax,xmax = 0; // initialisieren und deklarieren der Variablen
+
+int main(void){
+    // Eingabe des Users
+    printf("Geben Sie eine Obergrenze ein:");
+    scanf("%d",&og);
+
+    // Solange der Counter kleiner als die Obergrenze ist
+    while(z < og){
+        x = z; // setze x gleich z
+        i = 0; // i wird auf 0 gesetzt
+        // Solange x ungleich 1 ist
+        while(x != 1){
+            // Wenn x modulo 2 gleich 0 ist --> gerade Zahl .. und x ungleich 0 ist 
+            if(x % 2 == 0 && x != 0){
+                x = x/2; // halbiere x
+                printf("%d \t %d \n",x,i); // Ausgabe von X <TAB> Anzahl der Durchläufe <NL>
+            }else{
+                x = (3*x)+1; // multipliziere x mit 3 und addiere am Ende 1
+                printf("%d \t %d \n",x,i); // Ausgabe von X <TAB> Anzahl der Durchläufe <NL>
+            }
+            i++; // erhöhe i um 1
+        }
+        // Formatierung der Ausgabe --> NICHT ZWINGEND WICHTIG!
+        if(i!=1) printf("Es brauchte %d Durchläufe um von %d auf 1 zu kommen.\n",i,z);
+        else printf("Es brauchte %d Durchlauf um von %d auf 1 zu kommen.\n",i,z);
+        // Merke die höchste Anzahl an Durchläufen
+        if(i > imax){imax = i;xmax = z;}
+        z++; // erhöhe z um 1
+    }
+    // Ausgabe der maximalen Durchlaufzahl
+    printf("Es brauchte maximal %d Durchläufe. Die Zahl war die %d.\n",imax,xmax); 
+    return 0;
+}
