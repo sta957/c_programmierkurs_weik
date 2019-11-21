@@ -8,7 +8,7 @@ int main(void){
     if(zahl == 1){
         while(z < og){
             i = hcp(z);
-            printf("Die %d brauchte %d Durchläufe.\n",z+1,i);
+            printf("Die %d brauchte %d Durchläufe.\n",z,i);
             z++;
         }
     }else{printf("Keine natürliche Zahl eingegeben!");}
