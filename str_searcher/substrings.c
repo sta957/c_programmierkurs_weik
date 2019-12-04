@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "substrings.h"
+#include "strstr_own.h"
 
 int substrings(char* str,char* substr,char** ptr,int n){
     int i = 0;

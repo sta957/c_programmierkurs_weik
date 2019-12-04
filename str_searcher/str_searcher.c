@@ -11,6 +11,7 @@ int main(void) {
     k = substrings(a,b,p,10);
     if(k < 0){
         printf("");
+	    return -1;
     }
     printf("\nDen Substring '%s' gab es %d mal in '%s':\n",b,k,a);
     for (int i = 0; i < k; i++){
@@ -18,4 +19,5 @@ int main(void) {
         printf("Fund %d: Adresse %p oder Stelle %d\n",i+1,p[i],pos);
     }
     printf("\n");
+    return 0;
 }
