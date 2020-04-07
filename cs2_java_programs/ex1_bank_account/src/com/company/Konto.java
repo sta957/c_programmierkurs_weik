@@ -2,20 +2,31 @@ package com.company;
 
 public class Konto {
     private double kontostand = 0.0;
-    private String inhaber = "";
-    private int code = 0;
+    private Inhaber inhaber;
+    private Konto code;
     private int kontonummer;
 
-
-    public Konto(double ks, String in){
-        kontostand = ks;
-        inhaber = in;
+    public Konto(Inhaber in, int kn){
+        this.kontonummer = kn;
+        this.inhaber = in;
     }
 
-    public Konto(double ks, String in, int wc, int kn){
-        kontostand = ks;
-        inhaber = in;
-        code = wc;
+    public Konto(double ks, Inhaber in, int kn){
+        this.kontostand = ks;
+        this.inhaber = in;
+        this.kontonummer = kn;
+    }
+
+    public Konto(double ks, Inhaber in, Konto wc, int kn){
+        this.kontostand = ks;
+        this.inhaber = in;
+        this.code = wc;
+        this.kontonummer = kn;
+        if(!code.getInhaber().equals("")){
+            //System.out.println(code.getKontostand());
+            System.out.println(code.einzahlen(60));
+            //System.out.println(code.getKontostand());
+        }
     }
 
     public double getKontostand(){
@@ -23,22 +34,34 @@ public class Konto {
     }
 
     public String getInhaber(){
-        return this.inhaber;
+        return this.inhaber.getVorname();
     }
 
-    public double abheben(double Summe){
-        this.kontostand -= Summe;
-        return kontostand;
+    public int abheben(double summe){
+        if(summe > 0 && summe <= this.kontostand) {
+            this.kontostand -= summe;
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
-    public double einzahlen(double Summe){
-        this.kontostand += Summe;
-        return kontostand;
+    public int einzahlen(double summe){
+        if(summe > 0) {
+            this.kontostand += summe;
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
-    public double ueberweisen(double Summe, Konto Kontonummer){
-        kontostand = this.abheben(Summe);
-        Kontonummer.einzahlen(Summe);
-        return kontostand;
+    public int ueberweisen(double summe, Konto Zielkonto){
+        if(summe <= this.kontostand){
+            this.abheben(summe);
+            Zielkonto.einzahlen(summe);
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }
